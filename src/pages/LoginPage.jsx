@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
+const SHOW_DEMO_HINT = import.meta.env.DEV
+
 export default function LoginPage({ onLogin, onBrowseWithoutAccount }) {
-  const [email, setEmail] = useState('juan.martin@gmail.com')
-  const [password, setPassword] = useState('password123')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -77,10 +79,12 @@ export default function LoginPage({ onLogin, onBrowseWithoutAccount }) {
           </button>
         )}
 
-        <div className="mt-8 p-4 rounded-2xl bg-[#FAFAFA] text-[12px] text-[#888] leading-relaxed">
-          <p className="font-semibold text-[#1A1A1A] mb-1">Demo</p>
-          <p>juan.martin@gmail.com / password123</p>
-        </div>
+        {SHOW_DEMO_HINT && (
+          <div className="mt-8 p-4 rounded-2xl bg-[#FAFAFA] text-[12px] text-[#888] leading-relaxed">
+            <p className="font-semibold text-[#1A1A1A] mb-1">Credenciales de seed (solo desarrollo)</p>
+            <p>Ver <code className="text-[11px]">server/README.md</code> tras ejecutar <code className="text-[11px]">npm run seed</code>.</p>
+          </div>
+        )}
       </div>
     </div>
   )

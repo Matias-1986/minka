@@ -186,13 +186,13 @@ function PersonalDataScreen({ onBack }) {
   const { user } = useAppData()
   const [tab, setTab] = useState('account')
   const [email, setEmail] = useState(user?.email || '')
-  const [password, setPassword] = useState('password123')
+  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [firstName, setFirstName] = useState(user?.firstName || '')
   const [lastName, setLastName] = useState(user?.lastName || '')
   const [phone, setPhone] = useState(user?.phone || '')
 
-  const accountDirty = email !== user?.email || password !== 'password123'
+  const accountDirty = email !== user?.email || password.length > 0
   const personalDirty =
     firstName !== user?.firstName || lastName !== user?.lastName || phone !== user?.phone
 

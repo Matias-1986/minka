@@ -18,9 +18,19 @@ import adminRouter from './routes/admin/index.js'
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+const corsOrigins = String(env.corsOrigin)
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean)
+
 app.use(
   cors({
-    origin: env.corsOrigin,
+    origin:
+      corsOrigins.length === 0
+        ? false
+        : corsOrigins.length === 1
+          ? corsOrigins[0]
+          : corsOrigins,
     credentials: true,
   }),
 )

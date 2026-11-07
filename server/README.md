@@ -1,6 +1,6 @@
 # MINKA API (backend)
 
-API REST + MongoDB para la plataforma de inversión MINKA. Alineada al frontend mock y preparada para backoffice.
+API REST + MongoDB para la plataforma de inversión MINKA (app inversor y backoffice).
 
 ## Requisitos
 
@@ -20,35 +20,41 @@ docker compose up -d
 cd server
 npm install
 cp .env.example .env
-npm run seed    # carga datos demo del frontend
+# Definí un JWT_SECRET propio antes de cualquier entorno compartido
+npm run seed
 npm run dev     # http://localhost:4000
 ```
 
-Tras el seed, copiá `DEMO_USER_ID` al `.env`.
+Tras el seed, si desarrollás sin JWT en cada request, podés copiar `DEMO_USER_ID` a `.env`. Ese atajo **no aplica** con `NODE_ENV=production`.
 
 ## Probar la API
 
 ```bash
 curl http://localhost:4000/api/health
 
-curl -H "X-User-Id: <DEMO_USER_ID>" \
-  http://localhost:4000/api/v1/opportunities
-
-curl -H "X-User-Id: <DEMO_USER_ID>" \
-  http://localhost:4000/api/v1/portfolio/summary
+# Preferido: login y Bearer token
+curl -X POST http://localhost:4000/api/v1/auth/login \
+  -H 'Content-Type: application/json' \
+  -d '{"email":"juan.martin@gmail.com","password":"password123"}'
 ```
 
 ## Documentación
 
-- [API.md](./docs/API.md) — endpoints v1
+- [API.md](./docs/API.md) — endpoints v1 (app)
+- [ADMIN_API.md](./docs/ADMIN_API.md) — backoffice
 - [DATABASE.md](./docs/DATABASE.md) — colecciones e índices
+- [ARCHITECTURE.md](../docs/ARCHITECTURE.md) — arquitectura del sistema
 
-## Backoffice API
+## Credenciales de seed (solo desarrollo / demos)
 
-Ver [ADMIN_API.md](./docs/ADMIN_API.md).
+Tras `npm run seed`:
 
-Usuarios tras `npm run seed`:
-- `admin@minca.com` / `admin123` (admin)
-- `viewer@minca.com` / `viewer123` (solo lectura)
+| Rol | Email | Contraseña |
+|-----|-------|------------|
+| Inversor demo | `juan.martin@gmail.com` | `password123` |
+| Admin backoffice | `admin@minca.com` | `admin123` |
+| Viewer backoffice | `viewer@minca.com` | `viewer123` |
 
-UI: `http://localhost:5173/backoffice.html`
+No usar estas credenciales en producción. Cambiar `JWT_SECRET` y recrear usuarios reales antes de un entorno expuesto.
+
+UI backoffice local: `http://localhost:5173/backoffice.html`

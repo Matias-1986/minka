@@ -15,12 +15,12 @@ async function loadUserFromBearer(header) {
   }
 }
 
+const allowDevIdentityHeaders = env.nodeEnv !== 'production'
+
 /**
- * Autenticación mínima para desarrollo.
- * - Header X-User-Id con ObjectId válido, o
- * - DEMO_USER_ID en .env tras correr seed.
- *
- * TODO backoffice: JWT + roles admin/operator.
+ * Autenticación de la app inversor.
+ * - Preferido: `Authorization: Bearer <JWT>`
+ * - Solo en desarrollo: header `X-User-Id` o `DEMO_USER_ID` del entorno
  */
 export async function optionalAuth(req, res, next) {
   try {
@@ -31,12 +31,14 @@ export async function optionalAuth(req, res, next) {
       return next()
     }
 
-    const userId = req.headers['x-user-id']
-    if (userId && mongoose.Types.ObjectId.isValid(userId)) {
-      const user = await User.findById(userId).lean()
-      if (user?.isActive) {
-        req.user = user
-        req.userId = user._id
+    if (allowDevIdentityHeaders) {
+      const userId = req.headers['x-user-id']
+      if (userId && mongoose.Types.ObjectId.isValid(userId)) {
+        const user = await User.findById(userId).lean()
+        if (user?.isActive) {
+          req.user = user
+          req.userId = user._id
+        }
       }
     }
 
@@ -55,8 +57,10 @@ export async function requireAuth(req, res, next) {
       return next()
     }
 
-    const headerId = req.headers['x-user-id']
-    const userId = headerId || env.demoUserId
+    let userId = null
+    if (allowDevIdentityHeaders) {
+      userId = req.headers['x-user-id'] || env.demoUserId
+    }
 
     if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(401).json({

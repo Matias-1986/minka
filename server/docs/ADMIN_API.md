@@ -104,5 +104,4 @@ Los valores de riesgo usan `label` (`Bajo`, `Medio`, `Alto`) para coincidir con 
 
 ## Usuarios demo (seed)
 
-- **Admin:** admin@minca.com / admin123
-- **Viewer:** viewer@minca.com / viewer123
+Credenciales solo para desarrollo local: ver [server/README.md](../README.md).

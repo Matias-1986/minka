@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
+const SHOW_DEMO_HINT = import.meta.env.DEV
+
 export default function LoginPage({ onLogin }) {
-  const [email, setEmail] = useState('admin@minca.com')
-  const [password, setPassword] = useState('admin123')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -39,6 +41,7 @@ export default function LoginPage({ onLogin }) {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-[#E5E7EB] text-[15px] focus:outline-none focus:border-[#111827]"
               required
+              autoComplete="username"
             />
           </div>
           <div>
@@ -49,6 +52,7 @@ export default function LoginPage({ onLogin }) {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-[#E5E7EB] text-[15px] focus:outline-none focus:border-[#111827]"
               required
+              autoComplete="current-password"
             />
           </div>
 
@@ -63,11 +67,12 @@ export default function LoginPage({ onLogin }) {
           </button>
         </form>
 
-        <div className="mt-8 p-4 rounded-xl bg-[#F9FAFB] text-[12px] text-[#6B7280] leading-relaxed">
-          <p className="font-semibold text-[#374151] mb-1">Demo</p>
-          <p>Admin: admin@minca.com / admin123</p>
-          <p>Viewer: viewer@minca.com / viewer123</p>
-        </div>
+        {SHOW_DEMO_HINT && (
+          <div className="mt-8 p-4 rounded-xl bg-[#F9FAFB] text-[12px] text-[#6B7280] leading-relaxed">
+            <p className="font-semibold text-[#374151] mb-1">Credenciales de seed (solo desarrollo)</p>
+            <p>Ver <code className="text-[11px]">server/README.md</code> tras ejecutar el seed.</p>
+          </div>
+        )}
       </div>
     </div>
   )
