@@ -1,0 +1,16 @@
+export const MASTERS = [
+  { type: 'category', code: 'real-estate', label: 'Real Estate', sortOrder: 1, metadata: { icon: 'building' } },
+  { type: 'category', code: 'agro', label: 'Agro', sortOrder: 2, metadata: { icon: 'cow' } },
+  { type: 'category', code: 'energia', label: 'Energía', sortOrder: 3, metadata: { icon: 'bolt' } },
+  { type: 'category', code: 'logistica', label: 'Industria / Logística', sortOrder: 4, metadata: { icon: 'factory' } },
+  { type: 'category', code: 'empresas', label: 'Empresas', sortOrder: 5, metadata: { icon: 'briefcase' } },
+  { type: 'risk', code: 'bajo', label: 'Bajo', sortOrder: 1, description: 'Riesgo bajo' },
+  { type: 'risk', code: 'medio', label: 'Medio', sortOrder: 2, description: 'Riesgo medio' },
+  { type: 'risk', code: 'alto', label: 'Alto', sortOrder: 3, description: 'Riesgo alto' },
+  { type: 'listing_status', code: 'open', label: 'Abierta', sortOrder: 1 },
+  { type: 'listing_status', code: 'upcoming', label: 'Próxima', sortOrder: 2 },
+  { type: 'listing_status', code: 'closed', label: 'Cerrada', sortOrder: 3 },
+  { type: 'publication_status', code: 'draft', label: 'Borrador', sortOrder: 1 },
+  { type: 'publication_status', code: 'published', label: 'Publicada', sortOrder: 2 },
+  { type: 'publication_status', code: 'archived', label: 'Archivada', sortOrder: 3 },
+]

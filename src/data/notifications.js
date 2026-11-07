@@ -1,0 +1,55 @@
+export const NOTIFICATIONS = [
+  {
+    id: 'notif-1',
+    type: 'investment',
+    opportunityId: 1,
+    title: 'Residencial Palermo',
+    subtitle: 'Residencial Palermo 2023',
+    description: 'Nuevo informe disponible',
+    body: 'Ya podés consultar el nuevo informe de avance de obra de tu inversión en Residencial Palermo. Incluye métricas de fondeo, cronograma y fotos del último mes.',
+    time: 'Hace 1 h',
+    read: false,
+    showBanner: true,
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop',
+  },
+  {
+    id: 'notif-2',
+    type: 'investment',
+    opportunityId: 2,
+    title: 'Cría vacuna extensiva',
+    subtitle: 'Cría vacuna extensiva',
+    description: 'Se acreditó el retorno de UD-11',
+    body: 'Se abrió una nueva ventana de reserva para tu inversión en Cría vacuna extensiva. Revisá los detalles en tu cartera.',
+    time: 'hace 15 min',
+    read: false,
+    showBanner: false,
+    image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&h=600&fit=crop',
+  },
+  {
+    id: 'notif-3',
+    type: 'investment',
+    opportunityId: 1,
+    title: 'Residencial Palermo',
+    subtitle: 'Residencial Palermo',
+    description: 'Se acreditó el retorno de UD-10',
+    time: 'hace 2 min',
+    body: 'Tu retorno de USD 12 fue acreditado en tu cuenta Minca.',
+    time: 'Hace 1 semana',
+    read: true,
+    showBanner: false,
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop',
+  },
+]
+
+export const INVESTMENT_REPORTS = {
+  1: [
+    { id: 'r1', label: 'Enero 2024', isNew: true },
+    { id: 'r2', label: 'Diciembre 2023', isNew: false },
+    { id: 'r3', label: 'Noviembre 2023', isNew: false },
+    { id: 'r4', label: 'Cierre 2023', isNew: false },
+  ],
+  2: [
+    { id: 'r1', label: 'Enero 2024', isNew: true },
+    { id: 'r2', label: 'Diciembre 2023', isNew: false },
+  ],
+}
